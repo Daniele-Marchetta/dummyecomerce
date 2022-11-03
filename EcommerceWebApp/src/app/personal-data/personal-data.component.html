@@ -1,0 +1,42 @@
+<form class="p-4"  #form="ngForm">
+  <p class="h1 mb-3 text-center">{{titolo}}</p>
+  <div class="mb-3">
+    <label for="name" class="form-label">Name *</label>
+    <input  maxlength="20" [(ngModel)]="this.DataServicePost.pdata.name" #nameCtrl="ngModel"  type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" ngModel required>
+    <div  *ngIf="nameCtrl.invalid && nameCtrl.touched"  id="emailHelp" class="form-text">Wrong Name!!</div>
+  </div>
+  <div class="mb-3">
+    <label for="surname" class="form-label">Surname *</label>
+    <input maxlength="20" [(ngModel)]="this.DataServicePost.pdata.surname"  #surnameCtrl="ngModel" ngModel type="text" class="form-control" id="exampleInputPassword1" name="surname" required>
+    <div  *ngIf="surnameCtrl.invalid && surnameCtrl.touched"  id="emailHelp" class="form-text">Wrong Surname!!</div>
+  </div>
+  <div class="mb-3">
+    <label for="phoneNumber" class="form-label">Phone Number</label>
+    <input valueAsNumber [(ngModel)]="this.DataServicePost.pdata.phoneNumber" minlength="10"  maxlength="10"   #phoneCtrl="ngModel" ngModel type="text" class="form-control" id="phoneNumber" name="phoneNumber" >
+    <div  *ngIf="phoneCtrl.invalid && phoneCtrl.touched"  id="emailHelp" class="form-text">Wrong Phone!!</div>
+  </div>
+  <div class="mb-3">
+    <label for="dateOfBirth" class="form-label">Date of birth *</label>
+    <input #dateCtrl="ngModel" [max]="today" [(ngModel)]="this.DataServicePost.pdata.dateOfBirth" ngModel type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+    <div  *ngIf="dateCtrl.invalid && dateCtrl.touched"  id="emailHelp" class="form-text">Wrong Date!!</div>
+  </div>
+  <div class="mb-3">
+    <label for="city" class="form-label">City *</label>
+    <input valueAsNumber  maxlength="25"  [(ngModel)]="this.DataServicePost.pdata.city"  #cityCtrl="ngModel" ngModel type="text" class="form-control" id="city" name="city" >
+    <div  *ngIf="cityCtrl.invalid && cityCtrl.touched"  id="emailHelp" class="form-text">Wrong City!!</div>
+  </div>
+  <div class="mb-3">
+    <label for="provinceAcronym" class="form-label">Province Acronym *</label>
+    <select maxlength="2"  #acronymCtrl="ngModel" ngModel class="form-select" id="provinceAcronym" required name="provinceAcronym">
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let item of province">{{item.acronym}}</option>
+    </select>
+    <div  *ngIf="acronymCtrl.invalid && acronymCtrl.touched"  id="emailHelp" class="form-text">Wrong Acronym!!</div>
+  </div>
+  <div class="mb-3">
+    <label for="cap" class="form-label">Cap *</label>
+    <input minlength="5" maxlength="5" #capCtrl="ngModel"[(ngModel)]="this.DataServicePost.pdata.cap" ngModel type="text" class="form-control" id="cap" name="cap" required >
+    <div  *ngIf="capCtrl.invalid && capCtrl.touched"  id="emailHelp" class="form-text">Wrong Cap!!</div>
+  </div>
+  <button (click)="validate(form)" class="btn btn-primary col-4" [disabled]="form.invalid" routerLink="../user-details">Next</button>
+</form>

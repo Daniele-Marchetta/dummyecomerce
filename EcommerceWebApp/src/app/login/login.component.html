@@ -1,0 +1,20 @@
+<form class="p-5" (ngSubmit)="validate(form)" #form="ngForm">
+  <p class="h1 mb-3 text-center">Login</p>
+  <div class="mb-3">
+    <label for="email" class="form-label">E-mail *</label>
+    <input  #emailCtrl="ngModel" email="true"  type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" ngModel required>
+    <div class="form-text" *ngIf="emailCtrl.invalid && emailCtrl.touched">Invalid Mail!!</div>
+  </div>
+  <div class="mb-3">
+    <label for="hashedPassword" class="form-label">Password *</label>
+    <input  minlength="5"  #hashedPasswordCtrl="ngModel"  type="password" class="form-control" id="hashedPassword" aria-describedby="emailHelp" name="hashedPassword" ngModel required>
+    <div class="form-text" *ngIf="hashedPasswordCtrl.invalid && hashedPasswordCtrl.touched">Invalid Password!!</div>
+  </div>
+  <div *ngIf="invalidLogin==false" class="alert alert-success" role="alert">
+    Congrats your registration has been accepted!
+  </div>
+  <div class="alert alert-danger" *ngIf="invalidLogin==true"  role="alert">
+    Invalid account!
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+</form>

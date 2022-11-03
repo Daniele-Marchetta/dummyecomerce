@@ -1,0 +1,19 @@
+<ol class="list-group list-group-numbered">
+
+  <li class="d-flex justify-content-center bg-white pt-2" id="titolo">
+    <p class="h3 text-center">Carrello</p>
+    <hr>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let item of risultati">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{item.productName}}</div>
+      {{item.price + ' €'}}
+    </div>
+    <span class="badge bg-dark rounded-pill">{{item.quantity}}</span>
+  </li>
+
+  <li class="d-flex justify-content-center bg-white pt-2" id="totale" >
+    <p class="h5 text-center">Totale : <b>{{totalPrice + ' €'}}</b> </p>
+    <hr>
+  </li>
+</ol>

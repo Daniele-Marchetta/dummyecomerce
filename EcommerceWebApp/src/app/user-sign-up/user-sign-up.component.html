@@ -1,0 +1,27 @@
+<form class="p-5" [ngClass]="{ 'submitted': formSubmitted}"(ngSubmit)="validate(form)" #form="ngForm">
+  <p class="h1 mb-3 text-center">{{titolo}}</p>
+  <div class="mb-3">
+    <label for="email" class="form-label">E-mail *</label>
+    <input  #emailCtrl="ngModel" email="true"  type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" ngModel required>
+    <div class="form-text" *ngIf="emailCtrl.invalid && emailCtrl.touched">Invalid Mail!!</div>
+  </div>
+  <div class="mb-3">
+    <label for="hashedPassword" class="form-label">Password *</label>
+    <input  minlength="8"  #hashedPasswordCtrl="ngModel"  type="password" class="form-control" id="hashedPassword" aria-describedby="emailHelp" name="hashedPassword" ngModel required>
+    <div class="form-text" *ngIf="hashedPasswordCtrl.invalid && hashedPasswordCtrl.touched">Invalid Password!!</div>
+  </div>
+  <div *ngIf="formSubmitted" class="alert alert-success" role="alert">
+    Congrats your registration has been accepted!
+  </div>
+  <div class="alert alert-danger" *ngIf="errori?.length > 0"  role="alert">
+    <ul>
+    <li *ngFor="let error of errori">
+      {{error}}
+    </li>
+  </ul>
+  </div>
+  <div class="row pt-3">
+  <button type="button" class="btn btn-primary col me-2 ms-3" routerLink="/sign-up/personal-data">Back</button>
+  <button (click)="clearErrors()"   type="submit" class="btn btn-primary  col ms-2 me-3" [disabled]="form.invalid || formSubmitted">Submit</button>
+</div>
+</form>
